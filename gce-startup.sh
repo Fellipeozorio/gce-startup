@@ -206,31 +206,21 @@ gcsfuse $BUCKET_R /mnt/gcs-bucket-R
 #sudo bash -c 'echo "deb https://cloud.r-project.org/bin/linux/ubuntu xenial-cran35/" >> /etc/apt/sources.list' && sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E298A3A825C0D65DFD57CBB651716619E084DAB9 && sudo apt update
 #sudo apt install r-base
 
-# R spatial
-sudo add-apt-repository ppa:ubuntugis/ubuntugis-unstable
-sudo apt update
-sudo apt install -y libudunits2-dev libgdal-dev libgeos-dev libproj-dev
+# You can then install R using the following command:
+# update indices
+apt update -qq
+# install two helper packages we need
+apt install --no-install-recommends software-properties-common dirmngr
+# import the signing key (by Michael Rutter) for these repo
+apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E298A3A825C0D65DFD57CBB651716619E084DAB9
+# add the R 4.0 repo from CRAN -- adjust 'focal' to 'groovy' or 'bionic' as needed
+add-apt-repository "deb https://cloud.r-project.org/bin/linux/ubuntu $(lsb_release -cs)-cran40/"
+sudo apt-get install r-base
 
-#install Rstudio
-MIRROR="https://cran.revolutionanalytics.com"
-
-REPO="deb $MIRROR/bin/linux/ubuntu xenial/"
-
-echo "$REPO" | sudo sh -c 'cat >> /etc/apt/sources.list'
-sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E084DAB9
-
-RSTUDIO_VERSION="rstudio-server-1.1.383-amd64.deb"
-
-sudo apt-get update
-sudo apt-get bash -c 'echo "deb https://cloud.r-project.org/bin/linux/ubuntu xenial-cran35/" >> /etc/apt/sources.list' && sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E298A3A825C0D65DFD57CBB651716619E084DAB9 && sudo apt update
-sudo apt-get --yes install r-base
-#sudo apt-get --yes install r-base
-sudo apt-get --yes install gdebi-core
-wget https://download2.rstudio.org/$RSTUDIO_VERSION
-sudo gdebi --non-interactive $RSTUDIO_VERSION
-
-sudo apt-get --yes install libcurl4-openssl-dev libxml2-dev libssl-dev
-
+# rstudio
+sudo apt-get install gdebi-core
+wget https://download2.rstudio.org/server/xenial/amd64/rstudio-server-1.4.1106-amd64.deb
+sudo gdebi rstudio-server-1.4.1106-amd64.deb
 
 #need a seperate delete instance script:
 
