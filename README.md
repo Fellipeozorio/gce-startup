@@ -16,7 +16,7 @@ Start up a GCE VM as described [here](https://cloud.google.com/compute/docs/quic
 
 After VM is running, click "connect SSH" button. In the window that pops up copy and paste the following 7 commands:
 
-**https://github.com/Fellipeozorio/rstudio-in-GoogleCloud.git**
+**git clone https://github.com/Fellipeozorio/rstudio-in-GoogleCloud.git**
 
 **mkdir -p $HOME/run**
 
