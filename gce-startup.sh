@@ -201,21 +201,36 @@ gcsfuse $BUCKET_R /mnt/gcs-bucket-R
 # Install R 3.6 
 # credits:https://askubuntu.com/questions/1162051/i-am-unable-to-install-latest-version-of-r
 # Primeiro, remove a versão instalada do R (caso haja):
-sudo apt purge r-base
+#sudo apt purge r-base
 # Adicionar o repositório, a chave e a atualização como um comando de terminal de uma linha :
-sudo bash -c 'echo "deb https://cloud.r-project.org/bin/linux/ubuntu xenial-cran35/" >> /etc/apt/sources.list' && sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E298A3A825C0D65DFD57CBB651716619E084DAB9 && sudo apt update
-sudo apt install r-base
+#sudo bash -c 'echo "deb https://cloud.r-project.org/bin/linux/ubuntu xenial-cran35/" >> /etc/apt/sources.list' && sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E298A3A825C0D65DFD57CBB651716619E084DAB9 && sudo apt update
+#sudo apt install r-base
 
 # R spatial
 sudo add-apt-repository ppa:ubuntugis/ubuntugis-unstable
 sudo apt update
 sudo apt install -y libudunits2-dev libgdal-dev libgeos-dev libproj-dev
 
-# rstudio
-wget -c https://download1.rstudio.org/desktop/bionic/amd64/rstudio-1.4.1106-amd64.deb
-sudo dpkg -i rstudio-1.4.1106-amd64.deb
-sudo apt install -fy
-rm rstudio-1.4.1106-amd64.deb
+#install Rstudio
+MIRROR="https://cran.revolutionanalytics.com"
+
+REPO="deb $MIRROR/bin/linux/ubuntu xenial/"
+
+echo "$REPO" | sudo sh -c 'cat >> /etc/apt/sources.list'
+sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E084DAB9
+
+RSTUDIO_VERSION="rstudio-server-1.1.383-amd64.deb"
+
+sudo apt-get update
+sudo apt-get bash -c 'echo "deb https://cloud.r-project.org/bin/linux/ubuntu xenial-cran35/" >> /etc/apt/sources.list' && sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E298A3A825C0D65DFD57CBB651716619E084DAB9 && sudo apt update
+sudo apt-get --yes install r-base
+#sudo apt-get --yes install r-base
+sudo apt-get --yes install gdebi-core
+wget https://download2.rstudio.org/$RSTUDIO_VERSION
+sudo gdebi --non-interactive $RSTUDIO_VERSION
+
+sudo apt-get --yes install libcurl4-openssl-dev libxml2-dev libssl-dev
+
 
 #need a seperate delete instance script:
 
