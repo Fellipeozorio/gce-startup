@@ -224,7 +224,7 @@ sudo apt-get install gdebi-core
 wget https://download2.rstudio.org/server/xenial/amd64/rstudio-server-1.4.1106-amd64.deb
 sudo gdebi rstudio-server-1.4.1106-amd64.deb
 
-# r spatial
+# r spatial (https://stackoverflow.com/questions/44382368/rgdal-installation-difficulty-on-ubuntu-16-04-lts)
 sudo add-apt-repository 'deb http://ppa.launchpad.net/ubuntugis/ppa/ubuntu xenial main' 
 sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 314DF160
 sudo apt update
