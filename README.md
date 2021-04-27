@@ -57,6 +57,13 @@ basic Gnome desktop (just file browser)
 -f, --full  
 full Gnome desktop (includes Firefox browser, OpenOffice, etc). Allows you to do ALL your work at on a remote virtual machine.
 
+# Para instalar o pacote "devtools" em uma nova máquina com sistema Ubuntu 16.04 é necessário executar o R base como um usuário root. Isso significa que o pacote "devtools" não pode ser instalado na pasta padrão da biblioteca R e possivelmente não pode usar alguns pacotes dependentes. Seguindo as instruções de Zheng Xiaochen (https://stackoverflow.com/questions/31114991/installation-of-package-devtools-had-non-zero-exit-status-on-ubuntu), basta executar em um terminal os comandos a seguir:
+
+sudo apt-get -y install libcurl4-gnutls-dev libxml2-dev libssl-dev
+sudo su  
+R
+install.packages('devtools', repos='http://cran.rstudio.com/')
+
 # File transfer between GCE and Google Storage
 Based on the way data is stored in Google Storage, it is best practice not to alter the files directly in a GStorage Bucket unless special services have been configured for your VM. The way this startup script causes the files/folders to sync between a new GCE and Google Storage, it is best practice to move the files in a particular sequence when doing your work. When your Google Storage bucket is accessible, either by terminal or GUI, move desired desired files from a bucket to "gcs-working" folder in user's home directory. Edit file there (i.e. use in vm, libre Office, R, etc). After file is saved to the "gcs-working" folder, manually move (don't copy) files/folders to your "gcs-put" folder, where the file is staged for transfer back to Google Storage. The syncs back into your bucket occur every 5 min. While there are more direct ways to access files in buckets (will be added later), this method works easily from terminal or GUI interfaces, as long as the proper order is followed: gcs-bucket(fused to GS Bucket) > gcs-working > gcs-put(syncs to GS Bucket).
 
