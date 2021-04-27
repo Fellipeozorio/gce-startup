@@ -199,14 +199,14 @@ gcsfuse $BUCKET_GEN /mnt/gcs-bucket
 gcsfuse $BUCKET_R /mnt/gcs-bucket-R
 
 #install Rstudio
-MIRROR="https://cran.revolutionanalytics.com"
+MIRROR="https://cloud.r-project.org/"
 
 REPO="deb $MIRROR/bin/linux/ubuntu xenial/"
 
 echo "$REPO" | sudo sh -c 'cat >> /etc/apt/sources.list'
-sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E084DAB9
+sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E298A3A825C0D65DFD57CBB651716619E084DAB9
 
-RSTUDIO_VERSION="rstudio-server-1.1.383-amd64.deb"
+RSTUDIO_VERSION="rstudio-server-1.4.1106-amd64.deb"
 
 sudo apt-get update
 sudo apt-get --yes install r-base
@@ -216,6 +216,9 @@ sudo gdebi --non-interactive $RSTUDIO_VERSION
 
 sudo apt-get --yes install libcurl4-openssl-dev libxml2-dev libssl-dev
 
+# Caso tenha interesse em usar pacotes para dados
+# espaciais (como rgdal), será necessário instalar:
+sudo apt-get install libgdal-dev libproj-dev
 
 #need a seperate delete instance script:
 
