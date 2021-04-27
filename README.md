@@ -1,4 +1,4 @@
-# Rstudio on Google Compute Engine with GUI and Storage
+# Rstudio version 1.4.1106 (R version 3.6.3) on Google Compute Engine with GUI and Storage
 This script automates set-up of a Google Cloud Platform Compute Engine (GCE) VM, installs a GUI desktop and Rstudio server, links GUI desktop and RStudio to Google storage buckets for easy access. . The script is designed to be compatible with users on remote ChromeOS systems, so inital authentication involves a guided interactive auth login step. All other GCE, Google Storage, firewall rules, desktop and Rstudio setup steps are automated.
 
 Google Cloud Platform is a very flexible computing platform. However, automated start-up of Google Compute Engine instances, and set up of related services (i.e. Google Storage or BigQuery) can be time consuming. These tasks can also be difficult for beginners to learn easily. This script aims to simplify set-up of GCE VMs related services. It creates necessary firewall rules, installs Rstudio, and creates a buckets for general storage and R based data science projects. Additionally, as learning to use commands in a bash terminal can have a steep learning curve, it also installs one of several GUI desktops (i.e. a light xfce or a heavier gnome version) to interact with the VM remotely.
@@ -57,7 +57,8 @@ basic Gnome desktop (just file browser)
 -f, --full  
 full Gnome desktop (includes Firefox browser, OpenOffice, etc). Allows you to do ALL your work at on a remote virtual machine.
 
-Para instalar o pacote "devtools" em uma nova máquina com sistema Ubuntu 16.04 é necessário executar o R base como um usuário root. Isso significa que o pacote "devtools" não pode ser instalado na pasta padrão da biblioteca R e possivelmente não pode usar alguns pacotes dependentes. Seguindo as instruções de Zheng Xiaochen (https://stackoverflow.com/questions/31114991/installation-of-package-devtools-had-non-zero-exit-status-on-ubuntu), basta executar em um terminal os comandos a seguir:
+**Notes**
+To install the "devtools" package on a new machine with Ubuntu 16.04 system it is necessary to run the base R as a root user. This means that the "devtools" package cannot be installed in the default folder of the R library and possibly cannot use some dependent packages. Following Zheng Xiaochen's instructions (https://stackoverflow.com/questions/31114991/installation-of-package-devtools-had-non-zero-exit-status-on-ubuntu), just execute the following commands in a terminal:
 
 sudo apt-get -y install libcurl4-gnutls-dev libxml2-dev libssl-dev
 
