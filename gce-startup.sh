@@ -198,27 +198,24 @@ vncserver
 gcsfuse $BUCKET_GEN /mnt/gcs-bucket
 gcsfuse $BUCKET_R /mnt/gcs-bucket-R
 
-#install Rstudio
-MIRROR="https://cloud.r-project.org/"
-
-REPO="deb $MIRROR/bin/linux/ubuntu xenial/"
-
-echo "$REPO" | sudo sh -c 'cat >> /etc/apt/sources.list'
+# r
 sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E298A3A825C0D65DFD57CBB651716619E084DAB9
+gpg --keyserver keyserver.ubuntu.com --recv-key E298A3A825C0D65DFD57CBB651716619E084DAB9
+gpg -a --export E298A3A825C0D65DFD57CBB651716619E084DAB9 | sudo apt-key add -
+sudo add-apt-repository "deb https://cloud.r-project.org/bin/linux/ubuntu focal-cran40/"
+sudo apt update
+sudo apt install -y r-base r-base-core r-recommended r-base-dev
 
-RSTUDIO_VERSION="rstudio-server-1.4.1106-amd64.deb"
+# r spatial
+sudo add-apt-repository ppa:ubuntugis/ubuntugis-unstable
+sudo apt update
+sudo apt install -y libudunits2-dev libgdal-dev libgeos-dev libproj-dev
 
-sudo apt-get update
-sudo apt-get --yes install r-base
-sudo apt-get --yes install gdebi-core
-wget https://download2.rstudio.org/$RSTUDIO_VERSION
-sudo gdebi --non-interactive $RSTUDIO_VERSION
-
-sudo apt-get --yes install libcurl4-openssl-dev libxml2-dev libssl-dev
-
-# Caso tenha interesse em usar pacotes para dados
-# espaciais (como rgdal), será necessário instalar:
-sudo apt-get install libgdal-dev libproj-dev
+# rstudio
+wget -c https://download1.rstudio.org/desktop/bionic/amd64/rstudio-1.4.1106-amd64.deb
+sudo dpkg -i rstudio-1.4.1106-amd64.deb
+sudo apt install -fy
+rm rstudio-1.4.1106-amd64.deb
 
 #need a seperate delete instance script:
 
