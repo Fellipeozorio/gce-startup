@@ -198,15 +198,15 @@ vncserver
 gcsfuse $BUCKET_GEN /mnt/gcs-bucket
 gcsfuse $BUCKET_R /mnt/gcs-bucket-R
 
-# r
-sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E298A3A825C0D65DFD57CBB651716619E084DAB9
-gpg --keyserver keyserver.ubuntu.com --recv-key E298A3A825C0D65DFD57CBB651716619E084DAB9
-gpg -a --export E298A3A825C0D65DFD57CBB651716619E084DAB9 | sudo apt-key add -
-sudo add-apt-repository "deb https://cloud.r-project.org/bin/linux/ubuntu focal-cran40/"
-sudo apt update
-sudo apt install -y r-base r-base-core r-recommended r-base-dev
+# Install R 3.6 
+# credits:https://askubuntu.com/questions/1162051/i-am-unable-to-install-latest-version-of-r
+# Primeiro, remove a versão instalada do R (caso haja):
+sudo apt purge r-base
+# Adicionar o repositório, a chave e a atualização como um comando de terminal de uma linha :
+sudo bash -c 'echo "deb https://cloud.r-project.org/bin/linux/ubuntu xenial-cran35/" >> /etc/apt/sources.list' && sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E298A3A825C0D65DFD57CBB651716619E084DAB9 && sudo apt update
+sudo apt install r-base
 
-# r spatial
+# R spatial
 sudo add-apt-repository ppa:ubuntugis/ubuntugis-unstable
 sudo apt update
 sudo apt install -y libudunits2-dev libgdal-dev libgeos-dev libproj-dev
