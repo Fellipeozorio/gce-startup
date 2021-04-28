@@ -70,6 +70,17 @@ R
 install.packages('devtools', repos='http://cran.rstudio.com/')
 
 
+To install the "rgdal" (https://stackoverflow.com/questions/44382368/rgdal-installation-difficulty-on-ubuntu-16-04-lts):
+
+sudo add-apt-repository 'deb http://ppa.launchpad.net/ubuntugis/ppa/ubuntu xenial main' 
+
+sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 314DF160
+
+sudo apt update
+
+sudo apt upgrade
+
+
 # File transfer between GCE and Google Storage
 Based on the way data is stored in Google Storage, it is best practice not to alter the files directly in a GStorage Bucket unless special services have been configured for your VM. The way this startup script causes the files/folders to sync between a new GCE and Google Storage, it is best practice to move the files in a particular sequence when doing your work. When your Google Storage bucket is accessible, either by terminal or GUI, move desired desired files from a bucket to "gcs-working" folder in user's home directory. Edit file there (i.e. use in vm, libre Office, R, etc). After file is saved to the "gcs-working" folder, manually move (don't copy) files/folders to your "gcs-put" folder, where the file is staged for transfer back to Google Storage. The syncs back into your bucket occur every 5 min. While there are more direct ways to access files in buckets (will be added later), this method works easily from terminal or GUI interfaces, as long as the proper order is followed: gcs-bucket(fused to GS Bucket) > gcs-working > gcs-put(syncs to GS Bucket).
 
