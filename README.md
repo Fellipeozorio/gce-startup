@@ -70,6 +70,8 @@ R
 install.packages('devtools', repos='http://cran.rstudio.com/')
 
 
+
+
 To install the "rgdal" (https://stackoverflow.com/questions/44382368/rgdal-installation-difficulty-on-ubuntu-16-04-lts):
 
 sudo add-apt-repository 'deb http://ppa.launchpad.net/ubuntugis/ppa/ubuntu xenial main' 
