@@ -70,8 +70,11 @@ R
 install.packages('devtools', repos='http://cran.rstudio.com/')
 
 To install spatial libraries on Ubuntu LTS versions, you can also use ubuntugis. Like in this code of (https://mauriciovancine.github.io/pt/courses/course-geospatial-data-r/) 
+
 sudo add-apt-repository ppa:ubuntugis/ubuntugis-unstable
+
 sudo apt update
+
 sudo apt install -y libudunits2-dev libgdal-dev libgeos-dev libproj-dev
 
 If "rgdal" continues to have a problem with the installation, see:(https://stackoverflow.com/questions/44382368/rgdal-installation-difficulty-on-ubuntu-16-04-lts):
