@@ -57,7 +57,8 @@ basic Gnome desktop (just file browser)
 -f, --full  
 full Gnome desktop (includes Firefox browser, OpenOffice, etc). Allows you to do ALL your work at on a remote virtual machine.
 
-**Notes**
+**Notes:**
+
 To install the "devtools" package on a new machine with Ubuntu 16.04 system it is necessary to run the base R as a root user. This means that the "devtools" package cannot be installed in the default folder of the R library and possibly cannot use some dependent packages. Following Zheng Xiaochen's instructions (https://stackoverflow.com/questions/31114991/installation-of-package-devtools-had-non-zero-exit-status-on-ubuntu), just execute the following commands in a terminal:
 
 sudo apt-get -y install libcurl4-gnutls-dev libxml2-dev libssl-dev
